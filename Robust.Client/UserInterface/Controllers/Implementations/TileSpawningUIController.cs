@@ -221,8 +221,8 @@ public sealed partial class TileSpawningUIController : UIController
         if (!string.IsNullOrEmpty(searchStr))
         {
             tileDefs = tileDefs.Where(s =>
-                Loc.GetString(s.Name).ContainsYoInsensitive(searchStr, StringComparison.CurrentCultureIgnoreCase) ||
-                s.ID.ContainsYoInsensitive(searchStr, StringComparison.OrdinalIgnoreCase));
+                Loc.GetString(s.Name).ContainsSearch(searchStr, StringComparison.CurrentCultureIgnoreCase) ||
+                s.ID.ContainsSearch(searchStr, StringComparison.OrdinalIgnoreCase));
         }
 
         tileDefs = tileDefs.OrderBy(d => Loc.GetString(d.Name));
