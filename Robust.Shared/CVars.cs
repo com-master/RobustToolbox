@@ -1488,6 +1488,20 @@ namespace Robust.Shared
         public static readonly CVarDef<bool> ResAutoScaleEnabled =
             CVarDef.Create("interface.resolutionAutoScaleEnabled",true , CVar.CLIENTONLY | CVar.ARCHIVE);
 
+        /// <summary>
+        /// Pairs of characters treated as equivalent when searching user-facing text, such as entity
+        /// and tile names in the spawn menus. This lets a search match regardless of which
+        /// interchangeable letter the player typed.
+        /// </summary>
+        /// <remarks>
+        /// The value is a comma-separated list of pairs. Each pair is two characters: any occurrence of
+        /// the first is folded to the second before comparing. Both case variants are registered
+        /// automatically, so the default "ёе" also covers "ЁЕ" and makes the Russian letters 'ё' and
+        /// 'е' interchangeable. Add more pairs for other languages with similar quirks.
+        /// </remarks>
+        public static readonly CVarDef<string> SearchCharEquivalences =
+            CVarDef.Create("interface.search_char_equivalences", "ёе", CVar.CLIENTONLY | CVar.ARCHIVE);
+
 
 
         /*
