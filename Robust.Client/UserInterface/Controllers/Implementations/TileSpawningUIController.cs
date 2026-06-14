@@ -8,6 +8,7 @@ using Robust.Client.Placement.Modes;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
+using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Graphics;
 using Robust.Shared.IoC;
@@ -20,6 +21,7 @@ namespace Robust.Client.UserInterface.Controllers.Implementations;
 
 public sealed partial class TileSpawningUIController : UIController
 {
+    [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IPlacementManager _placement = default!;
     [Dependency] private IResourceCache _resources = default!;
     [Dependency] private ITileDefinitionManager _tiles = default!;
@@ -40,6 +42,8 @@ public sealed partial class TileSpawningUIController : UIController
         _placement.PlacementChanged += ClearTileSelection;
         _placement.DirectionChanged += OnDirectionChanged;
         _placement.MirroredChanged += OnMirroredChanged;
+
+        SearchHelpers.EnsureInitialized(_cfg);
     }
 
     private void StartTilePlacement(int tileType)

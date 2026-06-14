@@ -36,6 +36,8 @@ public sealed partial class EntitySpawningUIController : UIController
 
         _placement.DirectionChanged += OnDirectionChanged;
         _placement.PlacementChanged += ClearSelection;
+
+        SearchHelpers.EnsureInitialized(_cfg);
     }
 
     // The indices of the visible prototypes last time UpdateVisiblePrototypes was ran.
