@@ -112,8 +112,17 @@ public static class SearchHelpers
         foreach (var pair in raw.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
         {
             // Each pair must be exactly two characters: the typed variant and the canonical form.
-            if (pair.Length == 2)
-                table[pair[0]] = pair[1];
+            if (pair.Length != 2)
+                continue;
+
+            var from = pair[0];
+            var to = pair[1];
+
+            // Register both case variants automatically, so a single "ёе" pair also covers "ЁЕ".
+            // Folding happens before the case-insensitive compare, so an unfolded uppercase variant
+            // would otherwise still fail to match.
+            table[char.ToLowerInvariant(from)] = char.ToLowerInvariant(to);
+            table[char.ToUpperInvariant(from)] = char.ToUpperInvariant(to);
         }
 
         _equivalences = table;

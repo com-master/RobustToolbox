@@ -1495,12 +1495,12 @@ namespace Robust.Shared
         /// </summary>
         /// <remarks>
         /// The value is a comma-separated list of pairs. Each pair is two characters: any occurrence of
-        /// the first is folded to the second before comparing. For example, the default "ёе,ЁЕ" makes
-        /// the Russian letters 'ё' and 'е' interchangeable. Add more pairs for other languages with
-        /// similar quirks.
+        /// the first is folded to the second before comparing. Both case variants are registered
+        /// automatically, so the default "ёе" also covers "ЁЕ" and makes the Russian letters 'ё' and
+        /// 'е' interchangeable. Add more pairs for other languages with similar quirks.
         /// </remarks>
         public static readonly CVarDef<string> SearchCharEquivalences =
-            CVarDef.Create("interface.search_char_equivalences", "ёе,ЁЕ", CVar.CLIENTONLY | CVar.ARCHIVE);
+            CVarDef.Create("interface.search_char_equivalences", "ёе", CVar.CLIENTONLY | CVar.ARCHIVE);
 
 
 
